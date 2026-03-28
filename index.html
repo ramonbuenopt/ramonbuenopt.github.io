@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Integrative Fascial Therapy</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: white;
+    color: #1b2a34;
+    text-align: center;
+}
+
+header {
+    padding: 40px 20px;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+h2 {
+    color: #2a7f9e;
+}
+
+.section {
+    padding: 30px 20px;
+}
+
+.btn {
+    background: #1da6b0;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+
+textarea {
+    width: 90%;
+    max-width: 500px;
+    height: 100px;
+    margin-top: 15px;
+    padding: 10px;
+}
+
+canvas {
+    border: 1px solid #ccc;
+    margin-top: 20px;
+    touch-action: none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Integrative Fascial Therapy</h1>
+    <h2>Pain relief at home</h2>
+    <p>Melbourne • Ballarat • Geelong</p>
+
+    <a class="btn" href="https://wa.me/61437792933">Book via WhatsApp</a>
+</header>
+
+<div class="section container">
+    <h2>About</h2>
+    <p>
+    Personalized mobile Remedial Massage focused on fascia and real causes of pain.
+    Not just symptoms — we treat your body as a whole.
+    </p>
+</div>
+
+<div class="section container">
+    <h2>Availability</h2>
+    <p>Mon & Wed: 9:00 – 14:00</p>
+    <p>Tue, Fri, Sat: 7:00 – 18:00</p>
+    <p><strong>Thursday: Closed</strong></p>
+</div>
+
+<div class="section container">
+    <h2>Tell me about your pain</h2>
+
+    <textarea maxlength="200" placeholder="Describe your problem (max 200 characters)"></textarea>
+
+    <h3>Draw where you feel pain</h3>
+
+    <canvas id="canvas" width="300" height="500"></canvas>
+    <br>
+    <button onclick="clearCanvas()">Clear</button>
+</div>
+
+<div class="section">
+    <a class="btn" href="https://wa.me/61437792933">Contact via WhatsApp</a>
+</div>
+
+<script>
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+let drawing = false;
+
+canvas.addEventListener("mousedown", () => drawing = true);
+canvas.addEventListener("mouseup", () => drawing = false);
+canvas.addEventListener("mousemove", draw);
+
+canvas.addEventListener("touchstart", () => drawing = true);
+canvas.addEventListener("touchend", () => drawing = false);
+canvas.addEventListener("touchmove", drawTouch);
+
+function draw(e) {
+    if (!drawing) return;
+    ctx.fillStyle = "rgba(255,0,0,0.5)";
+    ctx.beginPath();
+    ctx.arc(e.offsetX, e.offsetY, 8, 0, Math.PI * 2);
+    ctx.fill();
+}
+
+function drawTouch(e) {
+    e.preventDefault();
+    if (!drawing) return;
+    const rect = canvas.getBoundingClientRect();
+    const x = e.touches[0].clientX - rect.left;
+    const y = e.touches[0].clientY - rect.top;
+
+    ctx.fillStyle = "rgba(255,0,0,0.5)";
+    ctx.beginPath();
+    ctx.arc(x, y, 8, 0, Math.PI * 2);
+    ctx.fill();
+}
+
+function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+</script>
+
+</body>
+</html>
