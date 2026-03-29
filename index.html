@@ -1,718 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Integrative Fascial Therapy</title>
-  <style>
-    :root{
-      --bg:#ffffff;
-      --surface:#ffffff;
-      --surface-soft:#f7fbfd;
-      --text:#173746;
-      --muted:#617985;
-      --line:#d8e6ed;
-      --blue:#1e6f8d;
-      --blue-dark:#14384f;
-      --teal:#1da6b0;
-      --green:#8fd7a1;
-      --danger:rgba(220,52,52,0.22);
-      --shadow:0 16px 44px rgba(14,43,59,.08);
-      --radius-xl:28px;
-      --radius-lg:22px;
-      --radius-md:16px;
-      --max:1140px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Integrative Fascial Therapy</title>
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family: Arial, sans-serif;
-      color:var(--text);
-      background:var(--bg);
-      line-height:1.5;
-    }
+<style>
+body{
+  margin:0;
+  font-family:Arial;
+  background:white;
+  color:#14384f;
+}
 
-    .page{
-      position:relative;
-      min-height:100vh;
-      overflow:hidden;
-    }
+/* HEADER LIMPO */
+.topbar{
+  border-bottom:1px solid #eee;
+}
 
-    .page::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 900'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='100%25' x2='100%25' y2='0%25'%3E%3Cstop offset='0%25' stop-color='%2314384f'/%3E%3Cstop offset='55%25' stop-color='%231da6b0'/%3E%3Cstop offset='100%25' stop-color='%238fd7a1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg opacity='0.10'%3E%3Ccircle cx='450' cy='450' r='260' fill='none' stroke='url(%23g)' stroke-width='7'/%3E%3Cpath d='M205 450c76-120 165-186 245-186s169 66 245 186' fill='none' stroke='url(%23g)' stroke-width='4'/%3E%3Cpath d='M225 585c105-68 160-84 225-84s120 16 225 84' fill='none' stroke='url(%23g)' stroke-width='4'/%3E%3Cpath d='M260 322c78 38 127 51 190 51s112-13 190-51' fill='none' stroke='url(%23g)' stroke-width='4'/%3E%3Cpath d='M450 252c20 0 36 16 36 36 0 14-7 26-19 32v34l42 35 12 102-13 150h-22l-9-126h-54l-9 126h-22l-13-150 12-102 42-35v-34c-12-6-19-18-19-32 0-20 16-36 36-36z' fill='none' stroke='url(%23g)' stroke-width='5'/%3E%3Cpath d='M450 354l-98 56M450 354l98 56M352 410l-36 130M548 410l36 130' fill='none' stroke='url(%23g)' stroke-width='4' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E");
-      background-repeat:no-repeat;
-      background-position:left 4vw top 90px;
-      background-size:min(56vw,760px);
-      z-index:0;
-    }
+.nav-clean{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 20px;
+}
 
-    .container{
-      width:min(calc(100% - 28px), var(--max));
-      margin:0 auto;
-      position:relative;
-      z-index:1;
-    }
+.left{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
 
-    .topbar{
-      position:sticky;
-      top:0;
-      z-index:20;
-      backdrop-filter:blur(12px);
-      background:rgba(255,255,255,.85);
-      border-bottom:1px solid rgba(216,230,237,.8);
-    }
+.logo{
+  width:55px;
+  height:55px;
+  object-fit:contain;
+}
 
-    .nav{
-      min-height:74px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-    }
+.brand-text h1{
+  margin:0;
+  font-size:20px;
+}
 
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
+.brand-text p{
+  margin:0;
+  font-size:14px;
+  color:#6b7f88;
+}
 
-    .brand-badge{
-      width:48px;
-      height:48px;
-      border-radius:50%;
-      display:grid;
-      place-items:center;
-      background:linear-gradient(135deg,var(--blue-dark),var(--teal));
-      box-shadow:var(--shadow);
-      flex-shrink:0;
-    }
+.right{
+  font-size:14px;
+  color:#1da6b0;
+  font-weight:600;
+}
 
-    .brand-badge svg{width:72%;height:72%}
+/* RESTO DO SITE */
 
-    .brand-text strong{
-      display:block;
-      font-size:1rem;
-      letter-spacing:.02em;
-    }
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+  text-align:center;
+}
 
-    .brand-text span{
-      font-size:.86rem;
-      color:var(--muted);
-    }
+textarea{
+  width:90%;
+  max-width:500px;
+  height:100px;
+  padding:10px;
+  margin-top:10px;
+}
 
-    .nav a.cta-mini{
-      text-decoration:none;
-      color:#fff;
-      background:linear-gradient(135deg,var(--blue-dark),var(--teal));
-      padding:12px 18px;
-      border-radius:999px;
-      font-weight:700;
-      font-size:.95rem;
-      white-space:nowrap;
-    }
+canvas{
+  border:1px solid #ccc;
+  margin:10px;
+}
 
-    .hero{
-      padding:52px 0 24px;
-      text-align:center;
-    }
-
-    .eyebrow{
-      display:inline-block;
-      padding:9px 14px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      background:#fff;
-      color:var(--blue-dark);
-      font-weight:700;
-      font-size:.9rem;
-      box-shadow:var(--shadow);
-    }
-
-    h1{
-      margin:18px 0 12px;
-      font-size:clamp(2.3rem, 5vw, 4.8rem);
-      line-height:1.02;
-      letter-spacing:-.04em;
-      color:var(--blue-dark);
-    }
-
-    h1 .accent{color:var(--teal)}
-
-    .subtitle{
-      margin:0 auto 18px;
-      max-width:760px;
-      color:var(--muted);
-      font-size:1.08rem;
-    }
-
-    .areas{
-      margin:0 0 24px;
-      color:var(--blue);
-      font-weight:700;
-      letter-spacing:.03em;
-      font-size:1rem;
-    }
-
-    .hero-actions{
-      display:flex;
-      justify-content:center;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-
-    .btn{
-      border:none;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      padding:14px 22px;
-      border-radius:999px;
-      cursor:pointer;
-      text-decoration:none;
-      font-weight:700;
-      transition:transform .18s ease;
-      font-size:1rem;
-    }
-
-    .btn:hover{transform:translateY(-1px)}
-
-    .btn-primary{
-      background:linear-gradient(135deg,var(--blue-dark),var(--teal));
-      color:#fff;
-      box-shadow:var(--shadow);
-    }
-
-    .btn-secondary{
-      background:#fff;
-      color:var(--blue-dark);
-      border:1px solid var(--line);
-      box-shadow:var(--shadow);
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:22px;
-      margin-top:22px;
-    }
-
-    .card{
-      background:var(--surface);
-      border:1px solid var(--line);
-      border-radius:var(--radius-xl);
-      padding:24px;
-      box-shadow:var(--shadow);
-    }
-
-    h2{
-      margin:0 0 12px;
-      color:var(--blue-dark);
-      font-size:1.35rem;
-    }
-
-    .muted{color:var(--muted)}
-
-    .hours p{
-      margin:8px 0;
-      color:var(--muted);
-    }
-
-    .hours strong{color:var(--text)}
-
-    textarea{
-      width:100%;
-      min-height:132px;
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:14px;
-      font-size:16px;
-      resize:none;
-      outline:none;
-      color:var(--text);
-      background:#fff;
-    }
-
-    .counter{
-      text-align:right;
-      color:var(--muted);
-      font-size:.9rem;
-      margin-top:8px;
-    }
-
-    .tips{
-      margin-top:14px;
-      padding:14px 16px;
-      background:var(--surface-soft);
-      border:1px solid var(--line);
-      border-radius:16px;
-      color:var(--muted);
-      font-size:.95rem;
-    }
-
-    .map-section{
-      margin-top:24px;
-      padding-bottom:10px;
-    }
-
-    .map-head{
-      text-align:center;
-      max-width:740px;
-      margin:0 auto 18px;
-    }
-
-    .map-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:22px;
-    }
-
-    .map-card{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:var(--radius-xl);
-      padding:18px;
-      box-shadow:var(--shadow);
-      text-align:center;
-    }
-
-    .map-card h3{
-      margin:4px 0 14px;
-      color:var(--blue-dark);
-      font-size:1.15rem;
-    }
-
-    .canvas-wrap{
-      width:100%;
-      max-width:360px;
-      margin:0 auto;
-      background:var(--surface-soft);
-      border:1px solid var(--line);
-      border-radius:18px;
-      overflow:hidden;
-    }
-
-    canvas{
-      display:block;
-      width:100%;
-      height:auto;
-      background:#fff;
-      touch-action:none;
-    }
-
-    .controls{
-      margin-top:20px;
-      display:flex;
-      justify-content:center;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-
-    .note{
-      text-align:center;
-      color:var(--muted);
-      max-width:760px;
-      margin:14px auto 0;
-      font-size:.95rem;
-    }
-
-    .footer{
-      text-align:center;
-      color:var(--muted);
-      padding:28px 0 42px;
-      font-size:.95rem;
-    }
-
-    @media (max-width: 860px){
-      .grid,.map-grid{grid-template-columns:1fr}
-      .nav{min-height:68px}
-      .nav a.cta-mini{padding:10px 14px;font-size:.9rem}
-    }
-  </style>
+.btn{
+  background:#1da6b0;
+  color:white;
+  padding:12px 20px;
+  border-radius:25px;
+  border:none;
+  margin:10px;
+}
+</style>
 </head>
+
 <body>
-  <div class="page">
-    <div class="topbar">
-      <div class="container">
-        <div class="nav">
-          <div class="brand">
-            <div class="brand-badge">
-              <svg viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="300" cy="300" r="215" stroke="white" stroke-width="14"/>
-                <path d="M300 170c18 0 30 13 30 30 0 11-5 19-13 24v36l34 28 10 90-12 110h-18l-8-95h-46l-8 95h-18l-12-110 10-90 34-28v-36c-8-5-13-13-13-24 0-17 12-30 30-30Z" stroke="white" stroke-width="12"/>
-                <path d="M300 260l-75 45M300 260l75 45M225 305l-30 95M375 305l30 95" stroke="white" stroke-width="10" stroke-linecap="round"/>
-              </svg>
-            </div>
-            <div class="brand-text">
-              <strong>Integrative Fascial Therapy</strong>
-              <span>Mobile Remedial Massage</span>
-            </div>
-          </div>
-          <a class="cta-mini" href="https://wa.me/61437792933?text=Hi%2C%20I%20saw%20your%20website%20and%20I%20would%20like%20to%20book%20a%20session.">WhatsApp</a>
-        </div>
+
+<!-- NOVO HEADER -->
+<div class="topbar">
+  <div class="nav-clean">
+
+    <div class="left">
+      <img src="file_000000008228720bb54c9906a3a0d586.png" class="logo">
+
+      <div class="brand-text">
+        <h1>Integrative Fascial Therapy</h1>
+        <p>Mobile Remedial Massage</p>
       </div>
     </div>
 
-    <div class="container">
-      <section class="hero">
-        <span class="eyebrow">Premium mobile care</span>
-        <h1>Pain relief <span class="accent">at home</span></h1>
-        <p class="subtitle">Personalized Remedial Massage focused on fascia, mobility, and the real cause of pain — delivered in the comfort of your home.</p>
-        <p class="areas">Melbourne • Ballarat • Geelong</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="https://wa.me/61437792933?text=Hi%2C%20I%20saw%20your%20website%20and%20I%20would%20like%20to%20book%20a%20session.">Book via WhatsApp</a>
-          <a class="btn btn-secondary" href="#pain-map">Show pain map</a>
-        </div>
-      </section>
-
-      <section class="grid">
-        <div class="card">
-          <h2>About</h2>
-          <p class="muted">A premium home-based service designed to help reduce pain, release tension, and improve movement with a personalized fascial approach.</p>
-          <br>
-          <h2>Availability</h2>
-          <div class="hours">
-            <p><strong>Monday & Wednesday:</strong> 9:00 – 14:00</p>
-            <p><strong>Tuesday, Friday & Saturday:</strong> 7:00 – 18:00</p>
-            <p><strong>Thursday:</strong> Closed</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <h2>Tell me about your pain</h2>
-          <p class="muted">Write a short description before opening WhatsApp.</p>
-          <textarea id="painText" maxlength="220" placeholder="For example: I have pain in my lower back and right hip when I sit for a long time."></textarea>
-          <div class="counter"><span id="charCount">0</span>/220</div>
-          <div class="tips">Tip: after opening WhatsApp, send the message and then attach the saved pain map image.</div>
-        </div>
-      </section>
-
-      <section class="map-section" id="pain-map">
-        <div class="map-head">
-          <h2>Pain Map</h2>
-          <p class="muted">Mark the painful area on the front and back of the body. Then save the image and send it with your WhatsApp message.</p>
-        </div>
-
-        <div class="map-grid">
-          <div class="map-card">
-            <h3>Front</h3>
-            <div class="canvas-wrap">
-              <canvas id="frontCanvas" width="360" height="680"></canvas>
-            </div>
-          </div>
-
-          <div class="map-card">
-            <h3>Back</h3>
-            <div class="canvas-wrap">
-              <canvas id="backCanvas" width="360" height="680"></canvas>
-            </div>
-          </div>
-        </div>
-
-        <div class="controls">
-          <button class="btn btn-secondary" onclick="clearAllCanvases()">Clear drawing</button>
-          <button class="btn btn-secondary" onclick="downloadPainMap()">Save pain map</button>
-          <button class="btn btn-primary" onclick="openWhatsApp()">Open WhatsApp</button>
-        </div>
-
-        <p class="note">This version opens WhatsApp with the text ready. The pain map image can be saved and attached manually in the chat.</p>
-      </section>
-
-      <div class="footer">
-        Integrative Fascial Therapy • Personalized Home Care • Melbourne • Ballarat • Geelong
-      </div>
+    <div class="right">
+      Melbourne • Ballarat • Geelong
     </div>
+
   </div>
+</div>
 
-  <script>
-    const painText = document.getElementById('painText');
-    const charCount = document.getElementById('charCount');
+<!-- CONTEÚDO -->
+<div class="container">
 
-    painText.addEventListener('input', () => {
-      charCount.textContent = painText.value.length;
-    });
+<h2>Describe your pain</h2>
+<textarea id="text"></textarea>
 
-    const canvases = [
-      { el: document.getElementById('frontCanvas'), side: 'front' },
-      { el: document.getElementById('backCanvas'), side: 'back' }
-    ];
+<h3>Mark your pain</h3>
 
-    function drawHuman(ctx, side) {
-      const w = ctx.canvas.width;
-      const h = ctx.canvas.height;
+<canvas id="front" width="200" height="400"></canvas>
+<canvas id="back" width="200" height="400"></canvas>
 
-      ctx.clearRect(0, 0, w, h);
-      ctx.fillStyle = '#ffffff';
-      ctx.fillRect(0, 0, w, h);
+<br>
+<button class="btn" onclick="clearCanvas()">Clear</button>
+<button class="btn" onclick="sendWhatsApp()">WhatsApp</button>
 
-      ctx.strokeStyle = '#88a0ad';
-      ctx.lineWidth = 3;
-      ctx.lineCap = 'round';
-      ctx.lineJoin = 'round';
+</div>
 
-      ctx.save();
-      ctx.translate(w / 2, 58);
+<script>
+const canvases=["front","back"];
+let current;
 
-      // head
-      ctx.beginPath();
-      ctx.arc(0, 44, 30, 0, Math.PI * 2);
-      ctx.stroke();
+canvases.forEach(id=>{
+  const c=document.getElementById(id);
+  const ctx=c.getContext("2d");
 
-      // neck
-      ctx.beginPath();
-      ctx.moveTo(-10, 74); ctx.lineTo(-10, 94);
-      ctx.moveTo(10, 74); ctx.lineTo(10, 94);
-      ctx.stroke();
+  drawBody(ctx);
 
-      // shoulders
-      ctx.beginPath();
-      ctx.moveTo(-54, 106);
-      ctx.quadraticCurveTo(0, 126, 54, 106);
-      ctx.stroke();
+  c.addEventListener("mousedown",()=>current=c);
+  c.addEventListener("mousemove",e=>draw(e,c));
+  c.addEventListener("mouseup",()=>current=null);
 
-      // arms outer
-      ctx.beginPath();
-      ctx.moveTo(-54, 106);
-      ctx.quadraticCurveTo(-96, 124, -120, 178);
-      ctx.quadraticCurveTo(-132, 220, -116, 280);
-      ctx.quadraticCurveTo(-100, 338, -86, 406);
+  c.addEventListener("touchstart",()=>current=c);
+  c.addEventListener("touchmove",e=>drawTouch(e,c));
+  c.addEventListener("touchend",()=>current=null);
+});
 
-      ctx.moveTo(54, 106);
-      ctx.quadraticCurveTo(96, 124, 120, 178);
-      ctx.quadraticCurveTo(132, 220, 116, 280);
-      ctx.quadraticCurveTo(100, 338, 86, 406);
-      ctx.stroke();
+function drawBody(ctx){
+  ctx.strokeStyle="#aaa";
 
-      // torso outer
-      ctx.beginPath();
-      ctx.moveTo(-54, 106);
-      ctx.quadraticCurveTo(-66, 170, -60, 246);
-      ctx.quadraticCurveTo(-53, 332, -34, 420);
-      ctx.quadraticCurveTo(-25, 458, -16, 492);
+  ctx.beginPath();
+  ctx.arc(100,40,20,0,Math.PI*2);
+  ctx.stroke();
 
-      ctx.moveTo(54, 106);
-      ctx.quadraticCurveTo(66, 170, 60, 246);
-      ctx.quadraticCurveTo(53, 332, 34, 420);
-      ctx.quadraticCurveTo(25, 458, 16, 492);
-      ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(100,60);
+  ctx.lineTo(100,200);
+  ctx.stroke();
 
-      // pelvis
-      ctx.beginPath();
-      ctx.moveTo(-16, 492); ctx.quadraticCurveTo(-34, 514, -42, 540);
-      ctx.moveTo(16, 492);  ctx.quadraticCurveTo(34, 514, 42, 540);
-      ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(100,80);
+  ctx.lineTo(50,150);
+  ctx.moveTo(100,80);
+  ctx.lineTo(150,150);
+  ctx.stroke();
 
-      // legs outer
-      ctx.beginPath();
-      ctx.moveTo(-42, 540);
-      ctx.quadraticCurveTo(-58, 602, -54, 676);
+  ctx.beginPath();
+  ctx.moveTo(100,200);
+  ctx.lineTo(60,300);
+  ctx.moveTo(100,200);
+  ctx.lineTo(140,300);
+  ctx.stroke();
+}
 
-      ctx.moveTo(42, 540);
-      ctx.quadraticCurveTo(58, 602, 54, 676);
-      ctx.stroke();
+function draw(e,canvas){
+  if(current!==canvas) return;
+  const ctx=canvas.getContext("2d");
+  ctx.fillStyle="rgba(255,0,0,0.5)";
+  ctx.beginPath();
+  ctx.arc(e.offsetX,e.offsetY,6,0,Math.PI*2);
+  ctx.fill();
+}
 
-      // legs inner
-      ctx.beginPath();
-      ctx.moveTo(-10, 540);
-      ctx.quadraticCurveTo(-16, 604, -14, 676);
+function drawTouch(e,canvas){
+  e.preventDefault();
+  if(current!==canvas) return;
 
-      ctx.moveTo(10, 540);
-      ctx.quadraticCurveTo(16, 604, 14, 676);
-      ctx.stroke();
+  const rect=canvas.getBoundingClientRect();
+  const x=e.touches[0].clientX-rect.left;
+  const y=e.touches[0].clientY-rect.top;
 
-      // feet
-      ctx.beginPath();
-      ctx.moveTo(-54, 676); ctx.quadraticCurveTo(-62, 684, -70, 692);
-      ctx.moveTo(54, 676);  ctx.quadraticCurveTo(62, 684, 70, 692);
-      ctx.stroke();
-
-      // hands
-      ctx.beginPath();
-      ctx.moveTo(-86, 406); ctx.quadraticCurveTo(-92, 420, -96, 434);
-      ctx.moveTo(86, 406);  ctx.quadraticCurveTo(92, 420, 96, 434);
-      ctx.stroke();
-
-      if (side === 'front') {
-        // sternum / abdomen
-        ctx.beginPath();
-        ctx.moveTo(0, 108); ctx.lineTo(0, 494);
-        ctx.stroke();
-
-        // chest
-        ctx.beginPath();
-        ctx.moveTo(-22, 172); ctx.quadraticCurveTo(0, 192, 22, 172);
-        ctx.moveTo(-26, 236); ctx.quadraticCurveTo(0, 258, 26, 236);
-        ctx.stroke();
-
-        // inner hip hint
-        ctx.beginPath();
-        ctx.moveTo(-16, 492); ctx.quadraticCurveTo(0, 508, 16, 492);
-        ctx.stroke();
-      } else {
-        // spine
-        ctx.beginPath();
-        ctx.moveTo(0, 106); ctx.lineTo(0, 494);
-        ctx.stroke();
-
-        // scapula / back shape hints
-        ctx.beginPath();
-        ctx.moveTo(-30, 170); ctx.quadraticCurveTo(0, 148, 30, 170);
-        ctx.moveTo(-28, 236); ctx.quadraticCurveTo(0, 214, 28, 236);
-        ctx.stroke();
-
-        // glute hint
-        ctx.beginPath();
-        ctx.moveTo(-20, 486); ctx.quadraticCurveTo(0, 516, 20, 486);
-        ctx.stroke();
-      }
-
-      ctx.restore();
-    }
-
-    function spray(ctx, x, y) {
-      for (let i = 0; i < 26; i++) {
-        const angle = Math.random() * Math.PI * 2;
-        const radius = Math.random() * 12;
-        const px = x + Math.cos(angle) * radius;
-        const py = y + Math.sin(angle) * radius;
-        ctx.fillStyle = 'rgba(220,52,52,0.22)';
-        ctx.beginPath();
-        ctx.arc(px, py, Math.random() * 4 + 1, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    canvases.forEach(item => {
-      const canvas = item.el;
-      const ctx = canvas.getContext('2d');
-      drawHuman(ctx, item.side);
-
-      let drawing = false;
-
-      function getPos(e) {
-        const rect = canvas.getBoundingClientRect();
-        if (e.touches && e.touches[0]) {
-          return {
-            x: (e.touches[0].clientX - rect.left) * (canvas.width / rect.width),
-            y: (e.touches[0].clientY - rect.top) * (canvas.height / rect.height)
-          };
-        }
-        return {
-          x: (e.clientX - rect.left) * (canvas.width / rect.width),
-          y: (e.clientY - rect.top) * (canvas.height / rect.height)
-        };
-      }
-
-      function start(e) {
-        drawing = true;
-        const p = getPos(e);
-        spray(ctx, p.x, p.y);
-      }
-
-      function move(e) {
-        if (!drawing) return;
-        e.preventDefault();
-        const p = getPos(e);
-        spray(ctx, p.x, p.y);
-      }
-
-      function stop() {
-        drawing = false;
-      }
-
-      canvas.addEventListener('mousedown', start);
-      canvas.addEventListener('mousemove', move);
-      canvas.addEventListener('mouseup', stop);
-      canvas.addEventListener('mouseleave', stop);
-
-      canvas.addEventListener('touchstart', start, { passive: false });
-      canvas.addEventListener('touchmove', move, { passive: false });
-      canvas.addEventListener('touchend', stop);
-    });
-
-    function clearAllCanvases() {
-      canvases.forEach(item => {
-        const ctx = item.el.getContext('2d');
-        drawHuman(ctx, item.side);
-      });
-    }
-
-    function openWhatsApp() {
-      const text = painText.value.trim() || 'No description provided.';
-      const message =
-        'Hi, I saw your website and I would like to book a session.%0A%0A' +
-        'Pain description:%0A' + encodeURIComponent(text) + '%0A%0A' +
-        'I marked the pain on the front and back body map.';
-      window.open('https://wa.me/61437792933?text=' + message, '_blank');
-    }
-
-    function downloadPainMap() {
-      const exportCanvas = document.createElement('canvas');
-      exportCanvas.width = 900;
-      exportCanvas.height = 760;
-      const ex = exportCanvas.getContext('2d');
-
-      ex.fillStyle = '#ffffff';
-      ex.fillRect(0, 0, exportCanvas.width, exportCanvas.height);
-
-      ex.fillStyle = '#14384f';
-      ex.font = 'bold 34px Arial';
-      ex.fillText('Integrative Fascial Therapy', 40, 56);
-
-      ex.fillStyle = '#617985';
-      ex.font = '22px Arial';
-      ex.fillText('Pain Map Summary', 40, 92);
-
-      ex.strokeStyle = '#d8e6ed';
-      ex.lineWidth = 2;
-      ex.strokeRect(34, 118, 832, 590);
-
-      ex.drawImage(document.getElementById('frontCanvas'), 60, 150, 320, 500);
-      ex.drawImage(document.getElementById('backCanvas'), 470, 150, 320, 500);
-
-      ex.fillStyle = '#14384f';
-      ex.font = 'bold 22px Arial';
-      ex.fillText('Front', 178, 140);
-      ex.fillText('Back', 596, 140);
-
-      ex.fillStyle = '#617985';
-      ex.font = '18px Arial';
-      const rawText = painText.value.trim() || 'No description provided.';
-      const lines = wrapText(ex, rawText, 790);
-      ex.fillText('Description:', 40, 686);
-      lines.slice(0, 3).forEach((line, i) => {
-        ex.fillText(line, 40, 716 + i * 22);
-      });
-
-      const link = document.createElement('a');
-      link.download = 'pain-map.png';
-      link.href = exportCanvas.toDataURL('image/png');
-      link.click();
-    }
-
-    function wrapText(ctx, text, maxWidth) {
-      const words = text.split(' ');
-      const lines = [];
-      let line = '';
-      for (let n = 0; n < words.length; n++) {
-        const testLine = line ? line + ' ' + words[n] : words[n];
-        const metrics = ctx.measureText(testLine);
-        if (metrics.width > maxWidth && line) {
-          lines.push(line);
-          line = words[n];
-        } else {
-          line = testLine;
-        }
-      }
-      if (line) lines.push(line);
-      return lines;
-    }
-  </script>
-</body>
-</html>
+  const ctx=canvas.getContext("2d");
+  ctx.fillStyle="
